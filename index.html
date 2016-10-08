@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>todos</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700&subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="css/index_main.css">
+</head>
+
+<body>
+    <div class="section-box">
+        <h3>todos</h3>
+        <div class="main-box">
+
+            <!-- Galva sākums -->
+            <div class="head-box cf">
+                <div class="head-btn-box">
+                    <button class="head-btn head-btn-up" type="button" name="button"></button>
+                    <button class="head-btn head-btn-down" type="button" name="button"></button>
+                </div>
+                <div class="head-text-box">
+                    What needs to be done?
+                </div>
+            </div>
+            <!-- Galva beigas -->
+
+            <form class="task-form" action="index.html" method="post">
+
+                <div class="task-box cf">
+                    <input class="task-cbx" id="id-cbx-1" type="checkbox" name="name-cbx" value="value-cbx">
+                    <label class="task-cbx-lbl" for="id-cbx-1"></label>
+                    <div class="task-edit-box" contenteditable="true">
+                        <span>By milk</span>
+                    </div>
+                    <button class="task-edit-close-btn" type="button" name="button">&#215;</button>
+                </div>
+
+                <div class="task-box cf">
+                    <input class="task-cbx" id="id-cbx-2" type="checkbox" name="name-cbx" value="value-cbx">
+                    <label class="task-cbx-lbl" for="id-cbx-2"></label>
+                    <div class="task-edit-box" contenteditable="true">
+                        <span>Prepare the report</span>
+                    </div>
+                    <button class="task-edit-close-btn" type="button" name="button">&#215;</button>
+                </div>
+
+                <div class="task-box cf">
+                    <input class="task-cbx" id="id-cbx-3" type="checkbox" name="name-cbx" value="value-cbx">
+                    <label class="task-cbx-lbl" for="id-cbx-3"></label>
+                    <div class="task-edit-box" contenteditable="true">
+                        <span>Call Mr.Smyth</span>
+                    </div>
+                    <button class="task-edit-close-btn" type="button" name="button">&#215;</button>
+                </div>
+
+            </form>
+
+            <!-- Apakša sākums -->
+            <div class="foot-box">
+                <span class="foot-count-text"> 3 items left</span>
+                <div class="foot-select-btn-box">
+                    <button class="foot-select-btn hover" type="button" name="button">All</button>
+                    <button class="foot-select-btn" type="button" name="button">Active</button>
+                    <button class="foot-select-btn" type="button" name="button">Completed</button>
+                </div>
+                <span class="foot-notice-text">Clear completed</span>
+            </div>
+            <!-- Apakša beigas -->
+
+        </div>
+
+        <!-- Falšpaneļi -->
+        <span class="false-box false-box-1"></span>
+        <span class="false-box false-box-2"></span>
+      </div>
+
+</body>
+</html>
