@@ -51,6 +51,7 @@ button {
     letter-spacing: -.5px;
 }
 
+
 /*Galva sākums*/
 
 .head-box {
@@ -119,6 +120,7 @@ button {
     color: rgb(210, 210, 210);
 }
 
+
 /*Galva beigas*/
 
 .task-box {
@@ -177,6 +179,7 @@ button {
 .task-edit-box:focus {
     box-shadow: 0 0 10px rgb(210, 210, 210) inset;
     border-color: rgb(100, 100, 100);
+    transition: border-color .5s;
 }
 
 .task-edit-close-btn {
@@ -190,10 +193,14 @@ button {
     color: rgba(175, 95, 95, 1);
     visibility: hidden;
     z-index: 10;
+    opacity: 0;
 }
 
-.task-edit-box:hover~.task-edit-close-btn, .task-edit-close-btn:hover {
+.task-edit-box:hover~.task-edit-close-btn,
+.task-edit-close-btn:hover {
     visibility: visible;
+    opacity: 1;
+    transition: opacity .5s;
 }
 
 
@@ -229,6 +236,7 @@ button {
 
 .foot-select-btn:hover, .foot-select-btn.hover {
     border-color: rgba(175, 95, 95, 1);
+    transition: border-color .5s;
 }
 
 .foot-notice-text {
@@ -238,7 +246,6 @@ button {
     text-align: right;
     font-size: 14px;
 }
-
 
 /*Apakša beigas*/
 
