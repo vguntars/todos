@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700&subset=latin-ext" rel="stylesheet">
     <link rel="stylesheet" href="css/index_main.css">
+    <script src="js/main_functions.js"></script>
+    <script src="js/index_before.js"></script>
 </head>
 
 <body>
@@ -16,65 +18,27 @@
 
             <!-- Galva sākums -->
             <div class="head-box cf">
-                <div class="head-btn-box">
-                    <!-- <button class="head-btn head-btn-up" type="button" name="button"></button> -->
+                <div class="head-btn-box head-btn-box-hiden">
                     <button class="head-btn head-btn-down" type="button" name="button"></button>
                 </div>
-                <div class="head-text-box" contenteditable="true">
-                    <span>What needs to be done?</span>
-                </div>
+                <div class="head-text-box" contenteditable="true"  placeholder="What needs to be done?"><!--
+                --></div>
             </div>
             <!-- Galva beigas -->
-
             <form class="task-form" action="index.html" method="post">
-
-                <div class="task-box cf">
-                    <input class="task-cbx" id="id-cbx-1" type="checkbox" name="name-cbx" value="value-cbx">
-                    <label class="task-cbx-lbl" for="id-cbx-1"></label>
-                    <div class="task-edit-box" contenteditable="true">
-                        <span>By milk</span>
-                    </div>
-                    <button class="task-edit-close-btn" type="button" name="button">&#215;</button>
-                </div>
-
-                <div class="task-box cf">
-                    <input class="task-cbx" id="id-cbx-2" checked type="checkbox" name="name-cbx" value="value-cbx">
-                    <label class="task-cbx-lbl" for="id-cbx-2"></label>
-                    <div class="task-edit-box" contenteditable="true">
-                        <span>Prepare the report</span>
-                    </div>
-                    <button class="task-edit-close-btn" type="button" name="button">&#215;</button>
-                </div>
-
-                <div class="task-box cf">
-                    <input class="task-cbx" id="id-cbx-3" type="checkbox" name="name-cbx" value="value-cbx">
-                    <label class="task-cbx-lbl" for="id-cbx-3"></label>
-                    <div class="task-edit-box" contenteditable="true">
-                        <span>Call Mr.Smyth</span>
-                    </div>
-                    <button class="task-edit-close-btn" type="button" name="button">&#215;</button>
-                </div>
-
-                <div class="task-box cf">
-                    <input class="task-cbx" id="id-cbx-4" type="checkbox" name="name-cbx" value="value-cbx">
-                    <label class="task-cbx-lbl" for="id-cbx-4"></label>
-                    <div class="task-edit-box" contenteditable="true">
-                        <span>Pick up dress from the dry cleaner</span>
-                    </div>
-                    <button class="task-edit-close-btn" type="button" name="button">&#215;</button>
-                </div>
-
+              <!-- Saturs no JS -->
             </form>
-
             <!-- Apakša sākums -->
             <div class="foot-box">
-                <span class="foot-count-text">4 items left</span>
+                <span class="foot-count-text">0 items left</span>
                 <div class="foot-select-btn-box">
-                    <button class="foot-select-btn hover" type="button" name="button">All</button>
-                    <button class="foot-select-btn" type="button" name="button">Active</button>
-                    <button class="foot-select-btn" type="button" name="button">Completed</button>
+                    <button id="select-btn-all" class="foot-select-btn hover" type="button" name="button">All</button>
+                    <button id="select-btn-active" class="foot-select-btn" type="button" name="button">Active</button>
+                    <button id="select-btn-completed" class="foot-select-btn" type="button" name="button">Completed</button>
                 </div>
-                <span class="foot-notice-text">Clear completed</span>
+                <div class="foot-clear-box">
+                  <button id="foot-clear-btn" class="foot-select-btn" type="button" name="button">Clear completed</button>
+                </div>
             </div>
             <!-- Apakša beigas -->
 
@@ -84,7 +48,7 @@
         <span class="false-box false-box-1"></span>
         <span class="false-box false-box-2"></span>
     </div>
-
+    <script src="js/index_after.js"></script>
 </body>
 
 </html>
