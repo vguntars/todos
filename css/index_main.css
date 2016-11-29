@@ -66,10 +66,7 @@ button {
     width: 30px;
     /*height: 30px;*/
 }
-.head-btn-box-hiden {
-  visibility: hidden;
-  opacity: 0;
-}
+
 [contenteditable=true]:empty:before{
   content: attr(placeholder);
   display: block; /* For Firefox */
@@ -267,6 +264,13 @@ button {
 .false-box-2 {
     width: 98%;
 }
-
+/**/
+.notdisplay {
+  display: none;
+}
+.hiddenbox {
+  visibility: hidden;
+  opacity: 0;
+}
 
 /**/

@@ -8,13 +8,11 @@ inputField.focus();
 //
 function loadFromlocalStorage(storName) {
     var taskAll = JSON.parse(localStorage.getItem(storName))
-    for (var i in taskAll) {
-        addTask(taskAll[i].task, taskAll[i].completed);
-    }
+    for (var i in taskAll) addTask(taskAll[i].task, taskAll[i].completed);
     taskCounter();
 }
 //Add task
-function addTask(value, completed = false, onTop = false) {
+function addTask(value, completed = false, onTop = true) {
     if (!value) return;
     value = value.trim();
     var idCbx = "id-cbx-" + taskIDcounter;
@@ -25,17 +23,12 @@ function addTask(value, completed = false, onTop = false) {
 <label class="task-cbx-lbl" for="${idCbx}"></label>
 <div class="task-edit-box" contenteditable="true">
 <span>${value}</span></div>
-<button class="task-edit-close-btn" type="button" name="button">&#215;</button>
-`;
+<button class="task-edit-close-btn" type="button" name="button">&#215;</button>`;
     var div = document.createElement("div");
     div.classList.add('task-box');
     div.classList.add('cf');
     div.innerHTML = divtmp;
-    if (onTop) {
-        mainElement.insertBefore(div, mainElement.firstChild);
-    } else {
-        mainElement.appendChild(div);
-    }
+    mainElement.insertBefore(div, (onTop) ? mainElement.firstChild : null);
     //-----add event f-ns
     $('.task-cbx', div).onchange = function(e) {
             taskCounter();
@@ -63,13 +56,18 @@ function taskCounter() {
     }).length;
     $('.foot-count-text').textContent = activeCount + " items left";
     if (count === 0) {
-        $('.foot-box').style.display = 'none';
-        $('.head-btn-box').classList.add('head-btn-box-hiden');
+        $('.foot-box').classList.add('notdisplay');
+        $('.head-btn-box').classList.add('hiddenbox');
         activeBtn($('#select-btn-all'));
         inputField.focus();
     } else {
-        $('.foot-box').style.display = 'block';
-        $('.head-btn-box').classList.remove('head-btn-box-hiden');
+        $('.foot-box').classList.remove('notdisplay');
+        $('.head-btn-box').classList.remove('hiddenbox');
+    }
+    if (count === activeCount) {
+        $('.foot-clear-box').classList.add('hiddenbox');
+      } else {
+        $('.foot-clear-box').classList.remove('hiddenbox');
     }
     return activeCount;
 }
@@ -102,33 +100,21 @@ $('#select-btn-all').onclick = function(e) {
         e && e.preventDefault();
         activeBtn(this);
         var tasks = $$('.task-box', mainElement);
-        for (var i in tasks) tasks[i].style.display = 'block';
+        for (var i in tasks) tasks[i].classList.remove('notdisplay');
     }
     //Sort-btn-active
 $('#select-btn-active').onclick = function(e) {
         e && e.preventDefault();
         activeBtn(this);
         var tasks = $$('.task-box', mainElement);
-        for (var i in tasks) {
-            if (!!$('.task-cbx', tasks[i]).checked) {
-                tasks[i].style.display = 'none';
-            } else {
-                tasks[i].style.display = 'block';
-            }
-        }
+        for (var i in tasks) (!!$('.task-cbx', tasks[i]).checked) ? tasks[i].classList.add('notdisplay') : tasks[i].classList.remove('notdisplay');
     }
     //Sort-btn-completed
 $('#select-btn-completed').onclick = function(e) {
         e && e.preventDefault();
         activeBtn(this);
         var tasks = $$('.task-box', mainElement);
-        for (var i in tasks) {
-            if (!$('.task-cbx', tasks[i]).checked) {
-                tasks[i].style.display = 'none';
-            } else {
-                tasks[i].style.display = 'block';
-            }
-        }
+        for (var i in tasks) (!$('.task-cbx', tasks[i]).checked) ? tasks[i].classList.add('notdisplay') : tasks[i].classList.remove('notdisplay');
     }
     //
 function activeBtn(btn) {
@@ -140,8 +126,7 @@ function activeBtn(btn) {
 $('#foot-clear-btn').onclick = function(e) {
         e && e.preventDefault();
         var tasks = $$('.task-box', mainElement);
-        for (var i in tasks)
-            if (!!$('.task-cbx', tasks[i]).checked) tasks[i].remove();
+        for (var i in tasks) if (!!$('.task-cbx', tasks[i]).checked) tasks[i].remove();
         setTimeout(function() {taskCounter()}, 0);
     }
 //
