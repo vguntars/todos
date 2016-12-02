@@ -1,7 +1,9 @@
+(function() {
 //Load
 var taskIDcounter = 0;
 var mainElement = $('.task-form');
 var inputField = $('.head-text-box');
+var addOnTop = true;
 //
 loadFromlocalStorage('tasks');
 inputField.focus();
@@ -12,7 +14,7 @@ function loadFromlocalStorage(storName) {
     taskCounter();
 }
 //Add task
-function addTask(value, completed = false, onTop = true) {
+function addTask(value, completed = false, onTop = false) {
     if (!value) return;
     value = value.trim();
     var idCbx = "id-cbx-" + taskIDcounter;
@@ -36,8 +38,8 @@ function addTask(value, completed = false, onTop = true) {
         //
     $('.task-edit-box', div).onkeydown = function(e) {
             if (e.keyCode === 13) {
+                e && e.preventDefault();
                 this.blur();
-                return false;
             }
         }
         //
@@ -54,7 +56,7 @@ function taskCounter() {
     var activeCount = $$('.task-cbx', mainElement).filter(function(value) {
         return value.checked === false
     }).length;
-    $('.foot-count-text').textContent = activeCount + " items left";
+    $('.foot-count-text').textContent = activeCount + ' item' + ((activeCount==1) ? '' : 's') + ' left';
     if (count === 0) {
         $('.foot-box').classList.add('notdisplay');
         $('.head-btn-box').classList.add('hiddenbox');
@@ -66,7 +68,7 @@ function taskCounter() {
     }
     if (count === activeCount) {
         $('.foot-clear-box').classList.add('hiddenbox');
-      } else {
+    } else {
         $('.foot-clear-box').classList.remove('hiddenbox');
     }
     return activeCount;
@@ -76,16 +78,16 @@ function taskCounter() {
 //input new task
 inputField.onkeydown = function(e) {
         if (e.keyCode === 13) {
+            e && e.preventDefault();
             var value = inputField.textContent.trim();
             if (value != '') {
-                addTask(value);
+                addTask(value, false, addOnTop);
                 taskCounter();
                 inputField.textContent = '';
             }
-            return false;
         }
     }
-//Check all
+    //Check all
 $('.head-btn-down').onclick = function(e) {
         e && e.preventDefault();
         var chkAll = $$('.task-cbx', mainElement)
@@ -95,47 +97,60 @@ $('.head-btn-down').onclick = function(e) {
     }
     //
     //FOOTER
-    //Sort-btn-all
-$('#select-btn-all').onclick = function(e) {
-        e && e.preventDefault();
-        activeBtn(this);
-        var tasks = $$('.task-box', mainElement);
-        for (var i in tasks) tasks[i].classList.remove('notdisplay');
+function tasksSort(btn) {
+    activeBtn(btn);
+    var tasks = $$('.task-box', mainElement);
+    for (var i in tasks) {
+        switch (btn.id) {
+            case 'select-btn-active':
+                (!!$('.task-cbx', tasks[i]).checked) ? tasks[i].classList.add('notdisplay'): tasks[i].classList.remove('notdisplay');
+                break;
+            case 'select-btn-completed':
+                (!$('.task-cbx', tasks[i]).checked) ? tasks[i].classList.add('notdisplay'): tasks[i].classList.remove('notdisplay');
+                break;
+            default:
+                tasks[i].classList.remove('notdisplay');
+        }
     }
-    //Sort-btn-active
-$('#select-btn-active').onclick = function(e) {
-        e && e.preventDefault();
-        activeBtn(this);
-        var tasks = $$('.task-box', mainElement);
-        for (var i in tasks) (!!$('.task-cbx', tasks[i]).checked) ? tasks[i].classList.add('notdisplay') : tasks[i].classList.remove('notdisplay');
-    }
-    //Sort-btn-completed
-$('#select-btn-completed').onclick = function(e) {
-        e && e.preventDefault();
-        activeBtn(this);
-        var tasks = $$('.task-box', mainElement);
-        for (var i in tasks) (!$('.task-cbx', tasks[i]).checked) ? tasks[i].classList.add('notdisplay') : tasks[i].classList.remove('notdisplay');
-    }
-    //
+}
+//
 function activeBtn(btn) {
     var btns = $$('.foot-select-btn');
     for (var i in btns) btns[i].classList.remove('hover');
     btn.classList.add('hover');
 }
-//Clear-btn
+//Sort-btns-all
+$('#select-btn-all').onclick = function(e) {
+        e && e.preventDefault();
+        tasksSort(this);
+    }
+    //Sort-btn-active
+$('#select-btn-active').onclick = function(e) {
+        e && e.preventDefault();
+        tasksSort(this);
+    }
+    //Sort-btn-completed
+$('#select-btn-completed').onclick = function(e) {
+        e && e.preventDefault();
+        tasksSort(this);
+    }
+    //Clear-btn
 $('#foot-clear-btn').onclick = function(e) {
         e && e.preventDefault();
         var tasks = $$('.task-box', mainElement);
-        for (var i in tasks) if (!!$('.task-cbx', tasks[i]).checked) tasks[i].remove();
-        setTimeout(function() {taskCounter()}, 0);
+        for (var i in tasks)
+            if (!!$('.task-cbx', tasks[i]).checked) tasks[i].remove();
+        setTimeout(function() {
+            taskCounter()
+        }, 0);
     }
-//
-//Close
+    //
+    //Close
 window.onbeforeunload = function(e) {
-    e && e.preventDefault();
-    saveTolocalStorage('tasks');
-}
-//Save
+        e && e.preventDefault();
+        saveTolocalStorage('tasks');
+    }
+    //Save
 function saveTolocalStorage(storName) {
     var taskAll = [];
     var tasks = $$('.task-box', mainElement);
@@ -147,3 +162,5 @@ function saveTolocalStorage(storName) {
     }
     localStorage.setItem(storName, JSON.stringify(taskAll));
 }
+//
+})();
