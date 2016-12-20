@@ -1,0 +1,49 @@
+span.page-scroll-box {
+    display: block;
+    border-radius: 20%;
+    z-index: 500;
+}
+
+span.page-scroll-box-hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+span.page-scroll-box-up {
+    position: fixed;
+    right: 10px;
+}
+
+span.page-scroll-box-down {
+    position: fixed;
+    right: 10px;
+}
+
+
+/*chevrons*/
+
+span.page-scroll-box:before, span.page-scroll-box:after {
+    content: '';
+    position: absolute;
+    top: 45%;
+    height: 15%;
+    background: white;
+}
+
+span.page-scroll-box-up:before, span.page-scroll-box-down:before {
+    left: 15%;
+    width: 36%;
+}
+
+span.page-scroll-box-up:after, span.page-scroll-box-down:after {
+    right: 15%;
+    width: 35%;
+}
+
+span.page-scroll-box-up:before, span.page-scroll-box-down:after {
+    transform: skew(0deg, -30deg);
+}
+
+span.page-scroll-box-down:before, span.page-scroll-box-up:after {
+    transform: skew(0deg, 30deg);
+}

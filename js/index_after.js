@@ -1,4 +1,13 @@
 (function() {
+//
+function $(selector, element = document) {
+    return element.querySelector(selector);
+}
+//
+function $$(selector, element = document) {
+    return [].slice.call(element.querySelectorAll(selector));
+}
+//
 //Load
 var taskIDcounter = 0;
 var mainElement = $('.task-form');

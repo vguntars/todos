@@ -6,7 +6,9 @@
     <title>todos</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700&subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/pageUpDown/css/pUpDown.css">
     <link rel="stylesheet" href="css/index_main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="js/main_functions.js"></script>
 </head>
 
@@ -20,12 +22,14 @@
                 <div class="head-btn-box head-btn-box-hiden">
                     <button class="head-btn head-btn-down" type="button" name="button"></button>
                 </div>
-                <div class="head-text-box" contenteditable="true"  placeholder="What needs to be done?"><!--
-                --></div>
+                <div class="head-text-box" contenteditable="true" placeholder="What needs to be done?">
+                    <!--
+-->
+                </div>
             </div>
             <!-- Galva beigas -->
             <form class="task-form" action="index.html" method="post">
-              <!-- Saturs no JS -->
+                <!-- Saturs no JS -->
             </form>
             <!-- Apakša sākums -->
             <div class="foot-box">
@@ -36,7 +40,7 @@
                     <button id="select-btn-completed" class="foot-select-btn" type="button" name="button">Completed</button>
                 </div>
                 <div class="foot-clear-box">
-                  <button id="foot-clear-btn" class="foot-select-btn" type="button" name="button">Clear completed</button>
+                    <button id="foot-clear-btn" class="foot-select-btn" type="button" name="button">Clear completed</button>
                 </div>
             </div>
             <!-- Apakša beigas -->
@@ -47,7 +51,13 @@
         <span class="false-box false-box-1"></span>
         <span class="false-box false-box-2"></span>
     </div>
+
     <script src="js/index_after.js"></script>
+    <script src="plugins/pageUpDown/js/pUpDown.js"></script>
+    <!-- pUpDown(upFromTop = '10px', downFromBottom = '10px', pUpDownSize = '30px', pUpDownColor = 'rgb(255, 0, 0)', pUpDownOpacity = .5) -->
+    <script>
+       $('body').pUpDown('10px', '10px', '35px', 'grey', .25);
+    </script>
 </body>
 
 </html>
