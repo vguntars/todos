@@ -43,6 +43,9 @@ function addTask(value, completed = false, onTop = false) {
     //-----add event f-ns
     $('.task-cbx', div).onchange = function(e) {
             taskCounter();
+            setTimeout(function(){
+            tasksSort($(".foot-select-btn-box .hover"));
+          }, 300)
         }
         //
     $('.task-edit-box', div).onkeydown = function(e) {
@@ -103,6 +106,9 @@ $('.head-btn-down').onclick = function(e) {
         var allCompleted = !taskCounter();
         for (var i in chkAll) chkAll[i].checked = !allCompleted;
         taskCounter();
+        setTimeout(function(){
+        tasksSort($(".foot-select-btn-box .hover"));
+      }, 300)
     }
     //
     //FOOTER

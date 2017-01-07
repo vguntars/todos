@@ -223,7 +223,7 @@ button {
     width: 46%;
     text-align: center;
     font-size: 14px;
-      vertical-align: top;
+    vertical-align: top;
 }
 
 .foot-select-btn {
@@ -267,10 +267,10 @@ button {
 /**/
 .notdisplay {
   display: none;
+  transition: all .5s;
 }
 .hiddenbox {
   visibility: hidden;
   opacity: 0;
 }
-
 /**/

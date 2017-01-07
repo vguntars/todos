@@ -7,6 +7,3 @@ function m() {
     alert(m_s);
 }
 //
-function $removeAllChild(parentElement) {
-    while (parentElement.hasChildNodes()) parentElement.removeChild(parentElement.lastChild);
-}
